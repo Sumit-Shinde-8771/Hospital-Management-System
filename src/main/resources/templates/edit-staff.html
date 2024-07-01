@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Staff Member</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center">Edit Staff Member</h2>
+
+        <!-- Form to edit existing staff member -->
+        <form th:action="@{/staff/{id}/update(id=${staff.id})}" th:object="${staff}" method="post">
+            <input type="hidden" th:field="*{id}">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" th:field="*{name}" required>
+            </div>
+            <div class="form-group">
+                <label for="position">Position:</label>
+                <input type="text" class="form-control" id="position" th:field="*{position}" required>
+            </div>
+            <div class="form-group">
+                <label for="department">Department:</label>
+                <input type="text" class="form-control" id="department" th:field="*{department}" required>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Update Staff Member</button>
+            </div>
+        </form>
+
+        <hr>
+
+        <div class="text-center">
+            <a href="/staff" class="btn btn-secondary">Back to Staff List</a>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and jQuery (for Bootstrap) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

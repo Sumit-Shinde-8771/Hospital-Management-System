@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Appointment</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h2 class="my-4">Create Appointment</h2>
+        <form th:action="@{/appointments}" th:object="${appointment}" method="post">
+            <div class="form-group">
+                <label for="doctor">Doctor:</label>
+                <select class="form-control" id="doctor" th:field="*{doctor}" required>
+                    <option th:each="doctor : ${doctors}" th:value="${doctor}" th:text="${doctor.name}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="patient">Patient:</label>
+                <select class="form-control" id="patient" th:field="*{patient}" required>
+                    <option th:each="patient : ${patients}" th:value="${patient}" th:text="${patient.name}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="receptionist">Receptionist:</label>
+                <select class="form-control" id="receptionist" th:field="*{receptionist}" required>
+                    <option th:each="receptionist : ${receptionists}" th:value="${receptionist}" th:text="${receptionist.name}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="appointmentTime">Appointment Time:</label>
+                <input type="datetime-local" class="form-control" id="appointmentTime" th:field="*{appointmentTime}" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Create Appointment</button>
+        </form>
+    </div>
+</body>
+</html>

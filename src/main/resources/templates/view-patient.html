@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Patient</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+        .patient-details {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 4px;
+        }
+        .details-label {
+            font-weight: bold;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Patient Details</h2>
+        
+        <div class="patient-details">
+            <p><span class="details-label">ID:</span> <span th:text="${patient.id}"></span></p>
+            <p><span class="details-label">Name:</span> <span th:text="${patient.name}"></span></p>
+            <p><span class="details-label">Age:</span> <span th:text="${patient.age}"></span></p>
+            <p><span class="details-label">Disease:</span> <span th:text="${patient.disease}"></span></p>
+        </div>
+        
+        <a class="back-link" href="/patients">Back to Patient List</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Receptionist Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+            max-width: 600px;
+        }
+        h2 {
+            color: #343a40;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+        .card {
+            margin: 20px 0;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .card-title {
+            color: #007bff;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .card-text {
+            color: #6c757d;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            border-radius: 50px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center">Receptionist Details</h2>
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${receptionist.name}"></h5>
+                <p class="card-text">
+                    <strong>Email:</strong> <span th:text="${receptionist.email}"></span><br>
+                    <strong>Phone:</strong> <span th:text="${receptionist.phone}"></span><br>
+                    <!-- Add more details as needed -->
+                </p>
+                <div class="text-center">
+                    <a href="/receptionists" class="btn btn-primary">Back to Receptionists</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

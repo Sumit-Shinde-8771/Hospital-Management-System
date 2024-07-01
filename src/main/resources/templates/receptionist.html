@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Receptionist Management</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        h1 {
+            color: #343a40;
+            font-weight: 700;
+            margin-bottom: 40px;
+        }
+        .card {
+            margin: 20px 0;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card-title {
+            color: #007bff;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        .card-text {
+            color: #6c757d;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            border-radius: 50px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Receptionist Management</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Add New Receptionist</h5>
+                        <form th:action="@{/receptionists}" method="post">
+                            <div class="form-group">
+                                <label for="name">Name:</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">E-Mail:</label>
+                                <input type="text" class="form-control" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number:</label>
+                                <input type="text" class="form-control" id="phone" name="phone" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Add Receptionist</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Receptionist List</h5>
+                        <ul class="list-group">
+                            <!-- Iterate over receptionists and display each one -->
+                            <li class="list-group-item" th:each="receptionist : ${receptionists}">
+                                <!-- Display receptionist details -->
+                                <span th:text="${receptionist.name} + ' - ' + ${receptionist.email} + ' - ' + ${receptionist.phone}"></span>
+                                <div class="btn-group float-right" role="group" aria-label="Receptionist Actions">
+                                    <!-- Edit receptionist button -->
+                                    <a th:href="@{/receptionists/{id}/edit(id=${receptionist.id})}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                    <!-- Delete receptionist form -->
+                                    <form th:action="@{/receptionists/{id}/delete(id=${receptionist.id})}" method="post" style="display:inline;">
+                                        <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
+                                    </form>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <h3 class="text-center">Patient List with Appointments</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Disease</th>
+                    <th>Appointment Status</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Use Thymeleaf to iterate over the list of patients -->
+                <tr th:each="patient, iterStat : ${patients}">
+                    <td th:text="${iterStat.index + 1}"></td>
+                    <td th:text="${patient.name}"></td>
+                    <td th:text="${patient.age}"></td>
+                    <td th:text="${patient.disease}"></td>
+                    <td th:text="${patient.appointmentStatus}" class="appointment-status"></td>
+                    <td class="actions text-center">
+                        <!-- Form to approve appointment -->
+                        <!-- <form th:action="@{/appointments/{id}/approve(id=${patient.patient_id})}" method="post">
+                            <button type="submit" class="btn btn-success btn-sm"><i class="fas fa-check"></i> Approve</button>
+                        </form>
+                        Form to reject appointment
+                        <form th:action="@{/appointments/{id}/reject(id=${patient.patient_id})}" method="post">
+                            <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-times"></i> Reject</button>
+                        </form> -->
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Bootstrap JS and jQuery (for Bootstrap) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</body>
+</html>

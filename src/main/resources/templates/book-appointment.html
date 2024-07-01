@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Appointment</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Book Appointment</h2>
+        <form th:action="@{/appointments/book-appointment/{patientId}(patientId=${patientId})}" th:object="${patient}" method="post">
+            Display patient information
+            <p>Patient Name: <span th:text="${patient.name}"></span></p>
+             <p>Patient Age: <span th:text="${patient.age}"></span></p>
+            <p>Patient Disease: <span th:text="${patient.disease}"></span></p>
+            
+            Add appointment form fields here
+			<input type="text" id="datepicker" placeholder="Enter Date Here">
+            <button type="submit">Request Appointment</button>
+        </form> 
+    </div>
+
+    <!-- Bootstrap JS and jQuery (for Bootstrap) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+   <script>
+    $(function() {
+        $("#datepicker").datepicker();
+    });
+</script>
+</body>
+</html>
